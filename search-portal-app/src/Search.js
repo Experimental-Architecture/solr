@@ -36,8 +36,9 @@ export default class Search extends Component {
   handleSubmit(event) {
     //alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
-    var URL = "http://192.168.1.10:8983/solr/elgg-core/select?df=text_en&hl.fl=text_en,%20text_fr&hl.simple.post=%3C/em%3E&hl.simple.pre=%3Cem%3E&hl=on&q=" + this.state.value;
-
+    var URL = "http://192.168.1.65:32338/solr/elgg-core/select?df=text_en&hl.fl=text_en,%20text_fr&hl.simple.post=%3C/em%3E&hl.simple.pre=%3Cem%3E&hl=on&q=" + this.state.value;
+    //var URL = "http://192.168.1.18:8983/solr/elgg-core/select?df=text_en&hl.fl=text_en,%20text_fr&hl.simple.post=%3C/em%3E&hl.simple.pre=%3Cem%3E&hl=on&q=" + this.state.value;
+    console.log(URL);
     fetch(URL, {
       headers: {"Accept": "application/json"},
       method: "GET"
