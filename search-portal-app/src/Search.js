@@ -6,8 +6,6 @@ export default class Search extends Component {
 
   constructor(props) {
     super(props);
-
-    // the variables that will be used throughout the instance
     this.state = {
     	value: '', 
     	results: [],
@@ -15,9 +13,7 @@ export default class Search extends Component {
       timeDocs: '',
       result_message: '',
     };
-    
     this.handleChange = this.handleChange.bind(this);
-
   }
 
   handleChange(event) {
@@ -25,82 +21,74 @@ export default class Search extends Component {
   }
 
   onRequestSearch() {
-    console.log("search! value:" + this.state.value);
-
-    var URL = "http://192.168.1.65:32338/solr/elgg-core/select?df=text_en&hl.fl=text_en,%20text_fr&hl.simple.post=%3C/em%3E&hl.simple.pre=%3Cem%3E&hl=on&q=" + this.state.value;
+    //192.168.1.65:32338/solr/elgg-core/select?df=text_en&hl.fl=text_en, text_fr&hl.simple.post=</em>&hl.simple.pre=<em>&hl=on&q=*:*
+    var URL = "http://192.168.1.65:32338/solr/elgg-core/select?df=text_en&hl.fl=text_en, text_fr&hl.simple.post=</em>&hl.simple.pre=<em>&hl=on&q=" + this.state.value;
     console.log(URL);
+
     fetch(URL, {
-     headers: {"Accept": "application/json"},
-     method: "GET"
-   
-   }).then(response => {
+      headers: {"Accept": "application/json"},
+      method: "GET"
 
-       return response.json()
-    
-   }).then(response => {
+    }).then(response => {
 
-     var jsonResponseHeader = response.responseHeader;
-     var jsonResponse = response.response;
-     var jsonNumFound = jsonResponse.numFound;
-     var jsonStart = jsonResponse.start;
-     var jsonDocs = jsonResponse.docs;
-     var jsonResponseHighlight = response.highlighting;
-     
+      return response.json();
 
-     this.setState({numDocs: jsonNumFound});
-     this.setState({timeDocs: jsonResponseHeader.QTime});
-     console.log("number of documents " + jsonResponse.numFound);
+    }).then(response => {
 
+      var jsonResponseHeader = response.responseHeader;
+      var jsonResponse = response.response;
+      var jsonNumFound = jsonResponse.numFound;
+      var jsonStart = jsonResponse.start;
+      var jsonDocs = jsonResponse.docs;
+      var jsonResponseHighlight = response.highlighting;
 
-     if (jsonResponse.numFound === 0) {
-       this.setState({result_message: 'No results found'});
-     }
+      this.setState({numDocs: jsonNumFound});
+      this.setState({timeDocs: jsonResponseHeader.QTime});
+      console.log("number of documents " + jsonResponse.numFound);
 
+      if (jsonResponse.numFound === 0) {
+      this.setState({result_message: 'No results found'});
+      }
 
-     var arrDocs = [];
+      var arrDocs = [];
+      for (var x in jsonDocs) {
 
-     for (var x in jsonDocs) {
-     
-       console.log("x: " + x + " jsonDocs: " + jsonDocs[x]);
-       console.log("info: " + jsonDocs[x].name_en);
-       var guid = jsonDocs[x].guid;
-       console.log("what " + guid);
-       var highlightGUID = jsonResponseHighlight[guid];
-       console.log("info: " + highlightGUID.text_en);
+        var guid = jsonDocs[x].guid;
+        var highlightGUID = jsonResponseHighlight[guid];
+        var arr1 = [{
+          "id": x,
+          "guid": jsonDocs[x].guid,
+          "name_en": jsonDocs[x].name_en,
+          "name_fr": jsonDocs[x].name_fr,
+          "title_en": jsonDocs[x].title_en,
+          "title_fr": jsonDocs[x].title_fr,
+          "description_en": jsonDocs[x].description_en,
+          "description_fr": jsonDocs[x].description_fr,
+          "highlight_en": highlightGUID.text_en,
+          "highlight_fr": highlightGUID.text_fr,
+          "type": jsonDocs[x].type,
+          "subtype": jsonDocs[x].subtype,
+          "date_created": jsonDocs[x].date_created,
+          "date_modified": jsonDocs[x].date_modified,
+          "url": jsonDocs[x].url,
+          "access_id": jsonDocs[x].access_id,
+          "platform": jsonDocs[x].platform
+        }];
 
-    
-       var arr1 = [{
-         "id": x,
-         "guid": jsonDocs[x].guid,
-         "name_en": jsonDocs[x].name_en,
-         "name_fr": jsonDocs[x].name_fr,
-         "title_en": jsonDocs[x].title_en,
-         "title_fr": jsonDocs[x].title_fr,
-         "description_en": jsonDocs[x].description_en,
-         "description_fr": jsonDocs[x].description_fr,
-         "highlight_en": highlightGUID.text_en,
-         "highlight_fr": highlightGUID.text_fr,
-         "type": jsonDocs[x].type,
-         "subtype": jsonDocs[x].subtype,
-         "date_created": jsonDocs[x].date_created,
-         "date_modified": jsonDocs[x].date_modified,
-         "url": jsonDocs[x].url,
-         "access_id": jsonDocs[x].access_id,
-         "platform": jsonDocs[x].platform
-       }];
+        arrDocs.push(arr1);
+      }
 
-       arrDocs.push(arr1);
-     }
+      this.setState({results: arrDocs});
 
-     this.setState({results: arrDocs});
+    }).catch(function(error) {
 
-   }).catch(function(error) {
-     
-     console.log("error: " + error);
-     //this.setState({result_message: 'Error!'});
-   });
+      console.log("error: " + error);
+      //this.setState({result_message: 'Error!'});
+
+    });
 
   }
+
 
   render() {
  
@@ -131,7 +119,7 @@ export default class Search extends Component {
       				subName.map((obj, idx) => {
       					result_array.push(
       				
-      					<div key='{idx}' class="searchResult"> 
+      					<div className="searchResult"> 
       						<h3 className="searchResultTitle"><a href={obj.url}>{obj.title_en}{obj.name_en}</a></h3>
       						<div className="searchResultCite"><cite className="searchResultURL">{obj.url}</cite></div>
 
