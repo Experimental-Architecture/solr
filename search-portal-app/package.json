@@ -7,10 +7,13 @@
     "@fortawesome/react-fontawesome": "0.0.18",
     "axios": "^0.18.0",
     "dangerously-set-inner-html": "^2.0.1",
+    "material-ui": "^0.20.1",
+    "material-ui-search-bar": "^0.4.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-fontawesome": "^1.6.1",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "typeface-roboto": "0.0.54"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,20 +1,24 @@
 body {
-  background-color: #FFCC00;
+  background-color: #FFFFFF;
   padding: 20px;
   margin: 0;
 }
+
 h1, h2, p, ul, li {
   font-family: sans-serif;
 }
+
 ul.header li {
   display: inline;
   list-style-type: none;
   margin: 0;
 }
+
 ul.header {
   background-color: #111;
   padding: 0;
 }
+
 ul.header li a {
   color: #FFF;
   font-weight: bold;
@@ -22,14 +26,17 @@ ul.header li a {
   padding: 20px;
   display: inline-block;
 }
+
 .content {
-  background-color: #FFF;
+  background-color:rgb(238, 238, 238);
   padding: 20px;
 }
+
 .content h2 {
   padding: 0;
   margin: 0;
 }
+
 .content li {
   margin-bottom: 10px;
 }
@@ -42,7 +49,6 @@ ul.header li a {
  display: inline-block; 
 }
 
-
 .searchResult {
   font-family: arial, sans-serif;
   position:relative;
@@ -50,10 +56,8 @@ ul.header li a {
   line-height: 1.2;
   width:40%;
   margin-bottom: 26px;
-  //border: 5px solid rgba(219, 219, 219, .5);
   padding: 15px 5px 15px 5px;
   word-wrap: normal;
-
 }
 
 .searchResultTitle {
@@ -98,13 +102,8 @@ ul.header li a {
   font-size: small;
   font-family: arial, sans-serif;
   color: #808080;
-  //white-space: nowrap; 
-}
-
-.searchForm {
 
 }
-
 
 em {
     background-color: #d5f4e6;
@@ -115,7 +114,6 @@ em {
   border-width: 2px;
   border-style: solid;
   width: 50%;
-
   padding-top: 5px;
   padding-right: 0px;
   padding-bottom:5px;
@@ -124,7 +122,6 @@ em {
 
 .searchInput {
   border: 0;
-
   outline:none;
   font-size: 15px;
   font-weight: bold;
@@ -137,14 +134,7 @@ em {
 .searchButton {
   width: 36px;
   height: 36px;
-
   background-color: Transparent;
   border: none;
   cursor:pointer;
-
 }
-
-.white_space {
-}
-
-

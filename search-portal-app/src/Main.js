@@ -1,33 +1,42 @@
 import React, { Component } from "react";
 import {
   Route,
-  NavLink,
   HashRouter
 } from "react-router-dom";
 import Home from "./Home";
 import Stuff from "./Stuff";
 import Search from "./Search";
-
-//https://www.kirupa.com/react/creating_single_page_app_react_using_react_router.htm
-
+import Admin from "./Admin";
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 class Main extends Component {
+  
   render() {
     return (
       <HashRouter>
+         
         <div>
-          <h1>Sample Search Portal - Apache Solr Search Results</h1>
-          <ul className="header">
-            <li><NavLink exact to="/">Home</NavLink></li>
-            <li><NavLink to="/stuff">Stuff</NavLink></li>
-            <li><NavLink to="/search">Search</NavLink></li>
-          </ul>
+
+          <h1>Material-UI</h1>
+          <div className="flex">
+            <Paper style={{ background: '#335075' }}>
+              <Button><a href='#/' style={{ color:'#FFFFFF', textDecoration:'none' }}>Account</a></Button>
+              <Button><a href='#/search' style={{ color:'#FFFFFF', textDecoration:'none' }}>Search</a></Button>
+              <Button><a href='#/stuff' style={{ color:'#FFFFFF', textDecoration:'none' }}>Logout</a></Button>
+              <Button><a href='#/admin' style={{ color:'#FFFFFF', textDecoration:'none' }}>Admin</a></Button>
+            </Paper>
+          </div>
+
           <div className="content">
             <Route exact path="/" component={Home}/>
             <Route path="/stuff" component={Stuff}/>
             <Route path="/search" component={Search}/>
+            <Route path="/admin" component={Admin}/>
           </div>
+
         </div>
+
       </HashRouter>
     );
   }
