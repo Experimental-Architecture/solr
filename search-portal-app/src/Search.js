@@ -145,7 +145,7 @@ export default class Search extends Component {
       					result_array.push(
       				
       					<div key='{idx}' class="searchResult"> 
-      						<h3 class="searchResultTitle"><a href="{obj.url}">{obj.title_en}{obj.name_en}</a></h3>
+      						<h3 class="searchResultTitle"><a href={obj.url}>{obj.title_en}{obj.name_en}</a></h3>
       						<div class="searchResultCite"><cite class="searchResultURL">{obj.url}</cite></div>
 
       						<span class="searchResultDescription">
