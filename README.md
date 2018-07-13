@@ -1,4 +1,4 @@
-# Apache Solr instance on Elgg
+# Apache Solr instance
 
 [![Build Status](https://travis-ci.org/Services-Sandbox/solr.svg?branch=master)](https://travis-ci.org/Services-Sandbox/solr)
 
