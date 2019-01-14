@@ -356,13 +356,5 @@ $ kubeadm reset
 
 ## Contribution
 
-I encourage anyone who would like to use this repository
-
-
-## Todo
-
-- [] create gitignore file
-- [] automate configurations for different ip addresses/url
-- [] create test scripts
-- [] enable CORS on Apache/or any web server (issue with reactjs retrieving data)
+I encourage anyone who would like to use this repository, to also contribute back to this repository. Thanks!
 
